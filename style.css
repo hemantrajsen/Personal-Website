@@ -1,0 +1,231 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    /* background-image: url("assets/background1.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover; */
+ background: #6C7476;
+background: radial-gradient(circle,rgba(108, 116, 118, 1) 31%, rgba(82, 92, 91, 1) 60%, rgba(107, 125, 133, 1) 100%);
+}
+
+:root {
+    --section-font: 18px;
+    --section-color: #000;
+    --heading-font: 36px;
+    --margin-bottom: 8px;
+    --mp-margin: 20px;
+    --mp-padding: 10px 20px 60px 20px;
+}
+
+.para {
+    font-size: var(--section-font);
+    /* color: var(--section-color); */
+}
+
+.heading {
+    font-size: var(--heading-font);
+    /* color: var(--section-color); */
+    margin-bottom: var(--margin-bottom);
+}
+
+.mp {
+    padding: var(--mp-padding);
+    margin: var(--mp-margin);
+}
+
+.poppins-light {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.poppins-regular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+
+.container {
+    width: 100vw;
+    /* border: 1px solid black; */
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    height: 140px;
+    /* border: 1px solid black; */
+}
+
+.navlist a {
+    text-decoration: none;
+    color: rgb(200, 200, 200);
+    font-size: 18px;
+    margin-left: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.navlist {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.logo img {
+    /* border: 1px solid black; */
+    width: 250px;
+    cursor: pointer;
+}
+
+#Home {
+    text-align: center;
+    margin: 160px;
+}
+
+#Home h1 {
+    font-size: 60px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: #d3d3d3;
+}
+
+#heading {
+    font-family: "Lexend Zetta", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+
+#hemant {
+    font-family: "Allura", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+#Home p {
+    font-size: 24px;
+}
+
+#About {
+    margin-top: 190px;
+}
+
+#cv a {
+    /* text-decoration: none; */
+    color: #000000;
+    font-size: 18px;
+}
+
+#Contact {
+    margin-top: 80px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    flex-direction: column;
+    border-top: 1px dotted #e0e0e0bb;
+    background-color: rgba(98, 98, 99, 0.322);
+    color: rgba(255, 252, 252, 0.601);
+    height: 31vh;
+}
+
+#Contact ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+#Contact ul li img {
+    width: 40px;
+    cursor: pointer;
+}
+
+#Contact a {
+    text-decoration: none;
+    color: rgba(255, 252, 252, 0.601);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.projects-grid li {
+    background: rgba(255, 255, 255, 0.722);
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.665);
+    color: black;
+}
+.contact li img{
+    width: 40px; /* Adjust size as needed */
+    transition: transform 0.3s ease; /* Smooth animation */
+}
+.contact li img:hover{
+    transform: scale(1.1); /* Zooms in slightly */
+    cursor: pointer; /* Shows the pointing hand cursor */
+}
+
+/* Example: make main layout two-column on wide screens */
+/* main {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+} */
+
+@media (min-width: 1000px) {
+    .projects-grid {
+        grid-template-columns: 1fr 1fr;
+        /* content + sidebar */
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        /* flex-direction: row; Stack logo and nav items */
+        height: auto;
+        /* Adjust height */
+        /* padding: 10px 15px; */
+    }
+
+    .navlist {
+        flex-direction: row;
+        /* Stack nav items */
+        gap: 10px;
+        /* Adjust gap */
+    }
+
+    .navlist a {
+        font-size: 18px;
+        /* Increase font size for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .logo img {
+        width: 30vw;
+        /* Adjust logo size for very small screens */
+    }
+
+    nav {
+        padding: 0 10px;
+        /* Adjust padding */
+    }
+
+    .navlist a {
+        font-size: 18px;
+    }
+}
