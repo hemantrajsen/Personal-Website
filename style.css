@@ -154,21 +154,39 @@ nav {
     color: rgba(255, 252, 252, 0.601);
 }
 
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
+.projects-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
     padding: 0;
     list-style: none;
 }
 
-.projects-grid li {
+.projects-flex li {
     background: rgba(255, 255, 255, 0.722);
     padding: 16px;
     border-radius: 8px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.665);
+    box-shadow: 0 8px 20px rgba(161, 161, 161, 0.75);
     color: black;
 }
+
+.project-container{
+    transition: transform 0.3s ease-in-out;
+}
+
+.project-container:hover{
+    transform: scale(1.02);
+}
+
+.project-img li{
+    background: none;
+}
+
+.project-img img{
+    margin: 0 6vw 0 3vw;
+    border-radius: 12px;
+}
+
 .contact li img{
     width: 40px; /* Adjust size as needed */
     transition: transform 0.3s ease; /* Smooth animation */
@@ -178,23 +196,16 @@ nav {
     cursor: pointer; /* Shows the pointing hand cursor */
 }
 
-/* Example: make main layout two-column on wide screens */
-/* main {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 40px;
-} */
 
 @media (min-width: 1000px) {
-    .projects-grid {
-        grid-template-columns: 1fr 1fr;
+    .projects-flex {
+        flex-direction: column;
         /* content + sidebar */
     }
 }
 
 @media (max-width: 768px) {
     nav {
-        /* flex-direction: row; Stack logo and nav items */
         height: auto;
         /* Adjust height */
         /* padding: 10px 15px; */
@@ -225,6 +236,6 @@ nav {
     }
 
     .navlist a {
-        font-size: 18px;
+        font-size: 16px;
     }
 }
