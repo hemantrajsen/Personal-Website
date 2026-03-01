@@ -189,6 +189,17 @@ nav {
     border-radius: 12px;
 }
 
+.project-img1 li{
+    background: transparent;
+    list-style: none;
+
+}
+
+.project-img1 img{
+    margin: 0 0 0 1.7vw;
+    border-radius: 12px;
+}
+
 .contact li img{
     width: 40px; /* Adjust size as needed */
     transition: transform 0.3s ease; /* Smooth animation */
