@@ -6,11 +6,9 @@
 }
 
 body {
-    /* background-image: url("assets/background1.jpeg");
-    background-repeat: no-repeat;
-    background-size: cover; */
- background: #6C7476;
-background: radial-gradient(circle,rgba(108, 116, 118, 1) 31%, rgba(82, 92, 91, 1) 60%, rgba(107, 125, 133, 1) 100%);
+    background: #6C7476;
+    background: radial-gradient(circle,rgba(108, 116, 118, 1) 31%, rgba(82, 92, 91, 1) 60%, rgba(107, 125, 133, 1) 100%);
+    overflow-x: hidden; /* Stops the whole webpage from scrolling sideways */
 }
 
 :root {
@@ -50,11 +48,9 @@ background: radial-gradient(circle,rgba(108, 116, 118, 1) 31%, rgba(82, 92, 91, 
     font-style: normal;
 }
 
-
-
 .container {
     width: 100vw;
-    /* border: 1px solid black; */
+    max-width: 100%;
 }
 
 nav {
@@ -63,7 +59,12 @@ nav {
     align-items: center;
     padding: 0 15px;
     height: 140px;
-    /* border: 1px solid black; */
+}
+
+.navlist {
+    list-style: none;
+    display: flex;
+    gap: 30px;
 }
 
 .navlist a {
@@ -74,14 +75,7 @@ nav {
     font-family: 'Poppins', sans-serif;
 }
 
-.navlist {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-}
-
 .logo img {
-    /* border: 1px solid black; */
     width: 250px;
     cursor: pointer;
 }
@@ -120,7 +114,6 @@ nav {
 }
 
 #cv a {
-    /* text-decoration: none; */
     color: #c3c3c3;
     font-size: 18px;
 }
@@ -162,7 +155,8 @@ nav {
     list-style: none;
 }
 
-.projects-flex li {
+/* Fix: Only target the main project cards, not the image lists inside them */
+.projects-flex > li {
     background: rgba(255, 255, 255, 0.722);
     padding: 16px;
     border-radius: 8px;
@@ -170,93 +164,152 @@ nav {
     color: black;
 }
 
-.project-container{
+.project-container {
     transition: transform 0.3s ease-in-out;
 }
 
-.project-container:hover{
+.project-container:hover {
     transform: scale(1.02);
 }
 
-.project-img li{
+/* =========================================
+   UNIVERSAL HORIZONTAL SCROLLING FOR APPS
+   ========================================= */
+
+.project-img, 
+.project-img1 {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important; /* FORCES horizontal layout */
+    overflow-x: auto !important; /* FORCES the scrollbar/swipe */
+    gap: 15px;
+    padding: 10px 0 20px 0;
+    margin: 0;
+    width: 100%;
+    -webkit-overflow-scrolling: touch; /* Smooth swiping on iOS */
+    scrollbar-width: thin; /* Shows a minimal scrollbar */
+}
+
+/* Hide the ugly default scrollbar on Chrome/Safari but keep it functional */
+.project-img::-webkit-scrollbar,
+.project-img1::-webkit-scrollbar {
+    height: 6px;
+}
+.project-img::-webkit-scrollbar-thumb,
+.project-img1::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+
+/* The wrappers holding the images */
+.project-img li, 
+.project-img1 li {
+    flex: 0 0 auto !important; /* CRITICAL: Absolutely refuses to squish */
+    width: 200px !important; 
     background: transparent;
     list-style: none;
-
+    padding: 0;
+    box-shadow: none;
 }
 
-.project-img img{
-    margin: 0 3vw 0 4vw;
-    border-radius: 12px;
+/* The actual mobile app screenshots */
+.project-img img, 
+.project-img1 img {
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: block;
+    margin: 0;
 }
 
-.project-img1 li{
-    background: transparent;
-    list-style: none;
-
+.contact li img {
+    width: 40px;
+    transition: transform 0.3s ease;
 }
 
-.project-img1 img{
-    margin: 0 0 0 1.7vw;
-    border-radius: 12px;
+.contact li img:hover {
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
-.contact li img{
-    width: 40px; /* Adjust size as needed */
-    transition: transform 0.3s ease; /* Smooth animation */
-}
-.contact li img:hover{
-    transform: scale(1.1); /* Zooms in slightly */
-    cursor: pointer; /* Shows the pointing hand cursor */
-}
-
-
-
-
-
-
-
-
-
-
-@media (min-width: 1000px) {
-    .projects-flex {
-        flex-direction: column;
-        /* content + sidebar */
-    }
-}
+/* =========================================
+   MEDIA QUERIES (Mobile Adjustments)
+   ========================================= */
 
 @media (max-width: 768px) {
     nav {
-        height: auto;
-        /* Adjust height */
-        /* padding: 10px 15px; */
+        height: 100px;
+        padding: 0 15px;
+        flex-direction: row; /* This forces the logo and links to stay side-by-side */
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo img {
+        width: 180px; /* Scaled down so the nav links have room */
     }
 
     .navlist {
         flex-direction: row;
-        /* Stack nav items */
-        gap: 10px;
-        /* Adjust gap */
+        flex-wrap: nowrap; /* Prevents links from dropping to the next line */
+        gap: 15px;
     }
 
     .navlist a {
+        font-size: 14px; /* Slightly smaller font to fit the screen */
+        margin-left: 0;
+    }
+
+    #Home {
+        margin: 60px 20px;
+    }
+
+    #Home h1 {
+        font-size: 36px;
+    }
+
+    #Home p {
         font-size: 18px;
-        /* Increase font size for smaller screens */
+    }
+
+    #About {
+        margin-top: 60px;
+    }
+
+    #Contact {
+        height: auto;
+        padding: 30px 10px;
     }
 }
 
 @media (max-width: 480px) {
     .logo img {
-        width: 30vw;
-        /* Adjust logo size for very small screens */
+        width: 130px; /* Much smaller logo for narrow phone screens */
     }
 
-    nav {
-        padding: 0 10px;
-        /* Adjust padding */
+    .navlist {
+        gap: 8px; /* Tighter spacing between links */
     }
 
     .navlist a {
-        font-size: 16px;
+        font-size: 12px; /* Very small text for tight phone screens */
+    }
+
+    .navlist svg {
+        width: 12px; /* Scales down your SVG icons slightly */
+        height: 12px;
+    }
+
+    #Home h1 {
+        font-size: 28px;
+    }
+
+    /* Keep gallery images slightly smaller on tiny phone screens so they still look good */
+    .project-img li, 
+    .project-img1 li {
+        width: 180px !important;
     }
 }
